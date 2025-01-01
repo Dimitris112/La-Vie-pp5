@@ -63,8 +63,9 @@ if not SECRET_KEY:
 DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST'),
-    'localhost',
+    # os.environ.get('ALLOWED_HOST'),
+    # 'localhost',
+    "8000-dimitris112-laviepp5-fsxj1rl1u29.ws.codeinstitute-ide.net"
 ]
 
 
@@ -80,6 +81,14 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+
+    'profiles',
+    # 'posts',
+    # 'comments',
+    # 'likes',
+    # 'followers',
+    # 'reports',
+    # 'notifications'
 ]
 
 SITE_ID = 1
