@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
+from reports.models import Report
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -10,6 +11,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     posts_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
+    reports_count = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -21,14 +23,17 @@ class ProfileSerializer(serializers.ModelSerializer):
             following = Follower.objects.filter(
                 owner=user, followed=obj.owner
             ).first()
-            # print(following)
             return following.id if following else None
         return None
+
+    def get_reports_count(self, obj):
+        return Report.objects.filter(post__owner=obj.owner).count()
 
     class Meta:
         model = Profile
         fields = [
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'following_id',
-            'posts_count', 'followers_count', 'following_count',
+            'posts_count', 'followers_count', 'following_count', 
+            'reports_count',
         ]
