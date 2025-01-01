@@ -32,5 +32,5 @@ urlpatterns = [
     path('', include('followers.urls')),
     path('', include('reports.urls')),
     path('', include ('blocks.urls')),
-    # path('', include('notifications.urls')),
+    path('', include('notifications.urls')),
 ]

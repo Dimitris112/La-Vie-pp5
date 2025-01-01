@@ -109,7 +109,7 @@ INSTALLED_APPS = [
     'followers',
     'reports',
     'blocks',
-    # 'notifications',
+    'notifications',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
