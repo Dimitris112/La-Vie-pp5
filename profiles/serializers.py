@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
 from reports.models import Report
+from blocks.models import Block 
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -12,6 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
     reports_count = serializers.SerializerMethodField()
+    blocks_count = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -29,11 +31,14 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_reports_count(self, obj):
         return Report.objects.filter(post__owner=obj.owner).count()
 
+    def get_blocks_count(self, obj):
+        return Block.objects.filter(blocked=obj.owner).count()
+
     class Meta:
         model = Profile
         fields = [
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'following_id',
             'posts_count', 'followers_count', 'following_count', 
-            'reports_count',
+            'reports_count', 'blocks_count',
         ]
