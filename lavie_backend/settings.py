@@ -66,7 +66,6 @@ DEBUG = 'DEBUG' in os.environ
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
-    '8000-dimitris112-laviepp5-fsxj1rl1u29.ws.codeinstitute-ide.net',
 ]
 
 # if 'CLIENT_ORIGIN' in os.environ:
@@ -74,13 +73,14 @@ ALLOWED_HOSTS = [
 #         os.environ.get('CLIENT_ORIGIN')
 #     ]
 
-# # if 'CLIENT_ORIGIN_DEV' in os.environ:
-# CORS_ALLOWED_ORIGINS = [
-#     os.environ.get('CLIENT_ORIGIN')
-# ]
+# if 'CLIENT_ORIGIN_DEV' in os.environ:
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('CLIENT_ORIGIN')
+]
 
 
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -100,7 +100,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    # 'corsheaders',
+    'corsheaders',
 
     'profiles',
     'posts',
@@ -113,7 +113,7 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
