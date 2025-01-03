@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import Asset from "../../components/Asset";
-
+import BlockButton from "../../components/BlockButton";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom";
@@ -28,10 +25,10 @@ import { ProfileEditDropdown } from "../../components/MoreDropdown";
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+  const [isBlocked, setIsBlocked] = useState(false);
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
-
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
 
@@ -58,6 +55,16 @@ function ProfilePage() {
     };
     fetchData();
   }, [id, setProfileData]);
+
+  const handleBlock = async (userId) => {
+    setIsBlocked(true);
+    console.log("User blocked:", userId);
+  };
+
+  const handleUnblock = async (userId) => {
+    setIsBlocked(false);
+    console.log("User unblocked:", userId);
+  };
 
   const mainProfile = (
     <>
@@ -88,23 +95,31 @@ function ProfilePage() {
           </Row>
         </Col>
         <Col lg={3} className="text-lg-right">
-          {currentUser &&
-            !is_owner &&
-            (profile?.following_id ? (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                onClick={() => handleUnfollow(profile)}
-              >
-                Unfollow
-              </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.Black}`}
-                onClick={() => handleFollow(profile)}
-              >
-                Follow
-              </Button>
-            ))}
+          {currentUser && !is_owner && (
+            <>
+              {profile?.following_id ? (
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                  onClick={() => handleUnfollow(profile)}
+                >
+                  Unfollow
+                </Button>
+              ) : (
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Black}`}
+                  onClick={() => handleFollow(profile)}
+                >
+                  Follow
+                </Button>
+              )}
+              <BlockButton
+                userId={profile.id}
+                onBlock={handleBlock}
+                onUnblock={handleUnblock}
+                isBlocked={isBlocked}
+              />
+            </>
+          )}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
