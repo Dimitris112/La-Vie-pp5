@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../api/axiosDefaults";
+import axios from "axios";
 import ReportCard from "./ReportCard";
 import styles from "../../styles/ReportsPage.module.css";
 import { useHistory } from "react-router-dom";

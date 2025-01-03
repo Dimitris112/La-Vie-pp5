@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "../../api/axiosDefaults";
+import axios from "axios";
 import styles from "../../styles/ReportForm.module.css";
 
 function ReportForm({ type, objectId }) {
