@@ -16,6 +16,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UserEmailForm from "./pages/profiles/UserEmailForm";
 import NotFound from "./components/NotFound";
+import ReportsPage from "./pages/reports/ReportsPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -59,8 +60,7 @@ function App() {
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-          {/* notifications will be here
-          reports will be here  */}
+          <Route exact path="/reports" render={() => <ReportsPage />} />
           <Route
             exact
             path="/profiles/:id/edit/username"
@@ -81,7 +81,6 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>

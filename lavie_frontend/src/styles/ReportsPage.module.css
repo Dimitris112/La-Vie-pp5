@@ -1,0 +1,40 @@
+.ReportsPage {
+  padding: 20px;
+}
+
+.Error {
+  color: red;
+  margin-bottom: 16px;
+}
+
+.ReportsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Pagination button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.Pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
