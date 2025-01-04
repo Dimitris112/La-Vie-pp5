@@ -1,56 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { axiosReq } from "../api/axiosDefaults";
 import { FaBell } from "react-icons/fa";
+import useNotifications from "../hooks/useNotifications";
 import styles from "../styles/NotificationBell.module.css";
 
 const NotificationBell = () => {
-  const [notifications, setNotifications] = useState([]);
-  const [unreadCount, setUnreadCount] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
   const currentUser = useCurrentUser();
   const history = useHistory();
-  useEffect(() => {
-    if (currentUser) {
-      const fetchNotifications = async () => {
-        try {
-          const { data } = await axiosReq.get(
-            `/notifications/?user=${currentUser.id}`
-          );
-          setNotifications(data.results);
-          setUnreadCount(
-            data.results.filter((notification) => !notification.read).length
-          );
-        } catch (err) {
-          console.error("Failed to fetch notifications:", err);
-        }
-      };
 
-      fetchNotifications();
-    }
-  }, [currentUser]);
+  const { notifications, unreadCount, markAllAsRead, loading, error } =
+    useNotifications();
 
   const handleBellClick = () => {
     setShowDropdown((prev) => !prev);
-    if (unreadCount > 0) {
-      markNotificationsAsRead();
-    }
-  };
-
-  const markNotificationsAsRead = async () => {
-    try {
-      await axiosReq.patch(`/notifications/mark-read/`);
-      setUnreadCount(0);
-      setNotifications((prevNotifications) =>
-        prevNotifications.map((notification) => ({
-          ...notification,
-          read: true,
-        }))
-      );
-    } catch (err) {
-      console.error("Failed to mark notifications as read:", err);
-    }
+    if (unreadCount > 0) markAllAsRead();
   };
 
   const navigateToNotification = (notificationId) => {
@@ -58,36 +23,54 @@ const NotificationBell = () => {
     setShowDropdown(false);
   };
 
+  if (!currentUser) return null;
+
   return (
     <div className={styles.NotificationBell}>
-      <FaBell
-        size={30}
-        className={styles.BellIcon}
+      <button
+        className={styles.BellButton}
         onClick={handleBellClick}
-        style={{ cursor: "pointer" }}
-      />
-      {unreadCount > 0 && (
-        <span className={styles.UnreadCount}>{unreadCount}</span>
-      )}
+        aria-label="Notifications"
+      >
+        <FaBell size={30} className={styles.BellIcon} />
+        {unreadCount > 0 && (
+          <span
+            className={styles.UnreadCount}
+            aria-label={`${unreadCount} unread notifications`}
+          >
+            {unreadCount}
+          </span>
+        )}
+      </button>
 
       {showDropdown && (
-        <div className={styles.Dropdown}>
-          {notifications.length === 0 ? (
+        <div className={styles.Dropdown} role="menu">
+          {loading && (
+            <p className={styles.Loading}>Loading notifications...</p>
+          )}
+          {error && <p className={styles.Error}>Error: {error}</p>}
+          {!loading && !error && notifications.length === 0 && (
             <p>No new notifications.</p>
-          ) : (
+          )}
+
+          {!loading &&
+            !error &&
+            notifications.length > 0 &&
             notifications.map((notification) => (
               <div
                 key={notification.id}
-                className={styles.NotificationItem}
+                className={`${styles.NotificationItem} ${
+                  !notification.read ? styles.UnreadNotification : ""
+                }`}
                 onClick={() => navigateToNotification(notification.id)}
+                role="menuitem"
               >
                 <p>{notification.message}</p>
                 {notification.read && (
                   <span className={styles.ReadLabel}>Read</span>
                 )}
               </div>
-            ))
-          )}
+            ))}
         </div>
       )}
     </div>
