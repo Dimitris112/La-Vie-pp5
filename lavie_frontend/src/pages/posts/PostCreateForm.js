@@ -39,6 +39,7 @@ function PostCreateForm() {
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
+      URL.revokeObjectURL(image);
       const file = event.target.files[0];
       setPostData((prevData) => ({
         ...prevData,
@@ -85,7 +86,11 @@ function PostCreateForm() {
           onChange={handleChange}
           isInvalid={!!errors?.title}
         />
-        {errors?.title && <Alert variant="warning">{errors.title[0]}</Alert>}
+        {errors?.title?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
       </Form.Group>
 
       <Form.Group>
@@ -98,9 +103,11 @@ function PostCreateForm() {
           onChange={handleChange}
           isInvalid={!!errors?.content}
         />
-        {errors?.content && (
-          <Alert variant="warning">{errors.content[0]}</Alert>
-        )}
+        {errors?.content?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
       </Form.Group>
 
       <Button
@@ -146,7 +153,10 @@ function PostCreateForm() {
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
                 >
-                  <Asset src={Upload} message="Click here to upload an image" />
+                  <Asset
+                    src={Upload}
+                    message="Click or tap to upload an image"
+                  />
                 </Form.Label>
               )}
 
@@ -157,9 +167,11 @@ function PostCreateForm() {
                 ref={imageInput}
                 isInvalid={!!errors?.image}
               />
-              {errors?.image && (
-                <Alert variant="warning">{errors.image[0]}</Alert>
-              )}
+              {errors?.image?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
             </Form.Group>
 
             <div className="d-md-none">{renderTextFields}</div>
