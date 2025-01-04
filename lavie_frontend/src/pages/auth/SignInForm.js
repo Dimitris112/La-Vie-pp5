@@ -23,10 +23,10 @@ function SignInForm() {
   useRedirect("loggedIn");
 
   const [signInData, setSignInData] = useState({
-    identifier: "", // Can be either email or username
+    username: "",
     password: "",
   });
-  const { identifier, password } = signInData;
+  const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
 
@@ -57,18 +57,18 @@ function SignInForm() {
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>sign in</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="identifier">
-              <Form.Label className="d-none">Email or Username</Form.Label>
+            <Form.Group controlId="username">
+              <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Email or Username"
-                name="identifier"
+                placeholder="Username"
+                name="username"
                 className={styles.Input}
-                value={identifier}
+                value={username}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.identifier?.map((message, idx) => (
+            {errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
