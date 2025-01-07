@@ -18,14 +18,12 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
-
   const [signUpData, setSignUpData] = useState({
     username: "",
-    email: "",
     password1: "",
     password2: "",
   });
-  const { username, email, password1, password2 } = signUpData;
+  const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 
@@ -56,7 +54,6 @@ const SignUpForm = () => {
           <h1 className={styles.Header}>sign up</h1>
 
           <Form onSubmit={handleSubmit}>
-            {/* Username */}
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control
@@ -74,25 +71,6 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            {/* Email */}
-            <Form.Group controlId="email">
-              <Form.Label className="d-none">Email</Form.Label>
-              <Form.Control
-                className={styles.Input}
-                type="email"
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            {errors.email?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-
-            {/* Password */}
             <Form.Group controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
@@ -110,7 +88,6 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            {/* Confirm Password */}
             <Form.Group controlId="password2">
               <Form.Label className="d-none">Confirm password</Form.Label>
               <Form.Control
@@ -128,7 +105,6 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            {/* Submit Button */}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
@@ -143,14 +119,12 @@ const SignUpForm = () => {
           </Form>
         </Container>
 
-        {/* Link to Sign In */}
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/signin">
             Already have an account? <span>Sign in</span>
           </Link>
         </Container>
       </Col>
-
       <Col
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
