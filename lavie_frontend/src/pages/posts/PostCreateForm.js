@@ -172,6 +172,18 @@ function PostCreateForm() {
                   {message}
                 </Alert>
               ))}
+
+              <span
+                className="d-block mt-2 text-muted"
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#6c757d",
+                  fontStyle: "italic",
+                  marginTop: "8px",
+                }}
+              >
+                Max width & height: 4096px | Max size: 2MB
+              </span>
             </Form.Group>
 
             <div className="d-md-none">{renderTextFields}</div>
