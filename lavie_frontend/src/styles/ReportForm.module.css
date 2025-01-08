@@ -1,22 +1,138 @@
 .ReportForm {
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .FormGroup {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .FormGroup label {
-  display: block;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.FormGroup input,
+.FormGroup select,
+.FormGroup textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.FormGroup input:focus,
+.FormGroup select:focus,
+.FormGroup textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
 }
 
 .Error {
   color: red;
   margin-top: 10px;
+  font-size: 14px;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
+
+label {
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 10px;
+  color: #555;
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+}
+
+.modal-header .close {
+  font-size: 1.25rem;
+  color: #6c757d;
+  opacity: 1;
+}
+
+.modal-header .close:hover {
+  color: #007bff;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .ReportForm {
+    padding: 20px;
+  }
+
+  .FormGroup label {
+    font-size: 14px;
+  }
+
+  .FormGroup input,
+  .FormGroup select,
+  .FormGroup textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .modal-header .close {
+    font-size: 1rem;
+  }
 }

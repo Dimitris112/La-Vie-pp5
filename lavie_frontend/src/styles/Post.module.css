@@ -22,3 +22,19 @@ h5 {
 .HeartOutline:hover {
   color: #f85032;
 }
+
+.ReportIcon {
+  color: red;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.ReportIcon:hover {
+  opacity: 0.8;
+}
+
+.Edited {
+  font-size: 0.8rem;
+  color: gray;
+  margin-left: 0.5rem;
+  font-style: italic;
+}
