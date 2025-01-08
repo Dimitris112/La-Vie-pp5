@@ -114,7 +114,7 @@ function ProfilePage() {
                 </Button>
               )}
               <BlockButton
-                userId={profile.id}
+                userId={profile?.id}
                 onBlock={handleBlock}
                 onUnblock={handleUnblock}
                 isBlocked={isBlocked}
