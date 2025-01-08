@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.exceptions import ValidationError
 
 class Post(models.Model):
     """
@@ -34,9 +34,16 @@ class Post(models.Model):
     image_filter = models.CharField(
         max_length=32, choices=image_filter_choices, default='normal'
     )
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = "Post"
+        verbose_name_plural = "Posts"
 
     def __str__(self):
         return f'{self.id} {self.title}'
+
+    def clean(self):
+        if not self.content and not self.image:
+            raise ValidationError('Either content or an image must be provided.')
