@@ -11,7 +11,7 @@ const useBlocking = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.post(`/blocks/`, { user: userId });
+      await axios.post("/blocks/", { blocked: userId });
       navigate(`/profiles/${userId}`);
     } catch (err) {
       setError("Failed to block the user.");

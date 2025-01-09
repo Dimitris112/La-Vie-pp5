@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/', include('followers.urls')),
     
     path('api/', include('reports.urls')),
-    path('api/', include ('blocks.urls')),
+    path('api/', include('blocks.urls')),
     path('api/', include('notifications.urls')),
 ]
 

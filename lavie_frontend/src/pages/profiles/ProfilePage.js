@@ -22,6 +22,7 @@ import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import { blockUser, unblockUser } from "../../api/blocks";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -62,13 +63,31 @@ function ProfilePage() {
   }, [id, setProfileData]);
 
   const handleBlock = async (userId) => {
-    setIsBlocked(true);
-    console.log("User blocked:", userId);
+    try {
+      await blockUser(userId);
+      setIsBlocked(true);
+      const { data: updatedProfile } = await axiosReq.get(`/profiles/${id}/`);
+      setProfileData((prevState) => ({
+        ...prevState,
+        pageProfile: { results: [updatedProfile] },
+      }));
+    } catch (error) {
+      console.error("Error while blocking user:", error);
+    }
   };
 
   const handleUnblock = async (userId) => {
-    setIsBlocked(false);
-    console.log("User unblocked:", userId);
+    try {
+      await unblockUser(userId);
+      setIsBlocked(false);
+      const { data: updatedProfile } = await axiosReq.get(`/profiles/${id}/`);
+      setProfileData((prevState) => ({
+        ...prevState,
+        pageProfile: { results: [updatedProfile] },
+      }));
+    } catch (error) {
+      console.error("Error while unblocking user:", error);
+    }
   };
 
   const handleReport = async () => {
@@ -79,7 +98,6 @@ function ProfilePage() {
       });
       setReportReason("");
       setShowReportModal(false);
-
       history.push(`/profiles/${id}`);
     } catch (err) {
       console.error("Failed to report profile:", err);
