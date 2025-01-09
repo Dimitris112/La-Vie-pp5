@@ -20,6 +20,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import ReportsPage from "./pages/reports/ReportsPage";
 import { FaSun, FaMoon } from "react-icons/fa";
+import Footer from "./components/Footer";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -42,10 +43,8 @@ function App() {
   const handleThemeChange = (event) => {
     const newDarkMode = event.target.checked;
     setDarkMode(newDarkMode);
-
     // Store the user's preference in localStorage
     localStorage.setItem("darkMode", newDarkMode);
-
     document.body.setAttribute("data-theme", newDarkMode ? "dark" : "light");
   };
 
@@ -140,6 +139,7 @@ function App() {
               <Route exact path="*" render={() => <NotFound />} />
             </Switch>
           </Container>
+          <Footer />
         </div>
       </Router>
     </ThemeProvider>

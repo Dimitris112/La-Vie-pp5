@@ -8,6 +8,10 @@
   padding-top: 81px;
 }
 
+footer {
+  margin-top: auto;
+}
+
 /* Light mode (default) */
 body[data-theme="light"] {
   background-color: #f8f8f8;
