@@ -128,12 +128,12 @@ function App() {
               />
               <Route
                 exact
-                path="/profiles/:id/change_username"
+                path="/profiles/:id/edit/username"
                 render={() => <UsernameForm />}
               />
               <Route
                 exact
-                path="/profiles/:id/change_password"
+                path="/profiles/:id/edit/password"
                 render={() => <UserPasswordForm />}
               />
               <Route exact path="/reports/:pk" render={() => <ReportsPage />} />
