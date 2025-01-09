@@ -1,3 +1,114 @@
+.Row {
+  height: calc(100vh - 81px);
+}
+
 .Container {
-  min-height: 343px;
+  padding: 30px 10px;
+}
+
+.ImageUploadContainer {
+  text-align: center;
+}
+
+.ImageUploadLabel {
+  display: block;
+  margin-top: 20px;
+}
+
+.ImageUploadMessage {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.ImageUploadError {
+  color: #ff3d3d;
+}
+
+.InputField {
+  background: #ffffff;
+  border: 1px solid #f0f1f9;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: #7177a1;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.TextArea {
+  background: #ffffff;
+  border: 1px solid #f0f1f9;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: #7177a1;
+  padding: 10px;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.ButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.CancelButton {
+  background-color: #ff3d3d;
+  color: white;
+}
+
+.CreateButton {
+  background-color: #2142b2;
+  color: white;
+}
+
+.Button:disabled {
+  background-color: #dcdcdc;
+}
+
+.Alert {
+  margin-top: 10px;
+}
+
+.ImagePreview {
+  border-radius: 8px;
+  max-width: 100%;
+  max-height: 200px;
+}
+
+.ImagePreviewContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.HintText {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.TitleInput,
+.ContentInput {
+  margin-bottom: 16px;
+}
+
+.MaxWidthText {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.ImageUploadText {
+  margin-top: 1rem;
+  color: #6c757d;
+  font-style: italic;
 }

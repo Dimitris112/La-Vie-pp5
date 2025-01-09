@@ -1,22 +1,14 @@
 import React, { useRef, useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
-
+import { TextField, Button, Box, Alert, Avatar } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
-import { useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
@@ -77,125 +69,113 @@ function PostCreateForm() {
 
   const renderTextFields = (
     <div className="text-center">
-      <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-          isInvalid={!!errors?.title}
-        />
-        {errors?.title?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-      </Form.Group>
+      <TextField
+        label="Title"
+        name="title"
+        value={title}
+        onChange={handleChange}
+        fullWidth
+        variant="outlined"
+        error={!!errors?.title}
+        helperText={errors?.title?.join(", ")}
+        margin="normal"
+      />
+      <TextField
+        label="Content"
+        name="content"
+        value={content}
+        onChange={handleChange}
+        fullWidth
+        multiline
+        rows={6}
+        variant="outlined"
+        error={!!errors?.content}
+        helperText={errors?.content?.join(", ")}
+        margin="normal"
+      />
 
-      <Form.Group>
-        <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
-          onChange={handleChange}
-          isInvalid={!!errors?.content}
-        />
-        {errors?.content?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-      </Form.Group>
-
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
-      >
-        Cancel
-      </Button>
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        type="submit"
-        disabled={!title || !content || !imageInput.current.files.length}
-      >
-        Create
-      </Button>
+      <Box display="flex" justifyContent="space-between" mt={2}>
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Blue}`}
+          onClick={() => history.goBack()}
+          variant="outlined"
+        >
+          Cancel
+        </Button>
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Blue}`}
+          type="submit"
+          disabled={!title || !content || !imageInput.current.files.length}
+          variant="contained"
+        >
+          Create
+        </Button>
+      </Box>
     </div>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
-                </Form.Label>
-              )}
-
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInput}
-                isInvalid={!!errors?.image}
-              />
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-
-              <span
-                className="d-block mt-2 text-muted"
-                style={{
-                  fontSize: "0.8rem",
-                  color: "#6c757d",
-                  fontStyle: "italic",
-                  marginTop: "8px",
-                }}
+    <form onSubmit={handleSubmit}>
+      <Box display="flex" flexDirection="row">
+        <Box
+          className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+          flex={1}
+        >
+          <Box textAlign="center">
+            {image ? (
+              <>
+                <Avatar alt="Post image" src={image} sx={{ width: 150, height: 150, mx: "auto" }} />
+                <Box mt={2}>
+                  <Button
+                    component="label"
+                    variant="contained"
+                    color="primary"
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Button>
+                </Box>
+              </>
+            ) : (
+              <Box
+                component="label"
+                htmlFor="image-upload"
+                style={{ cursor: "pointer" }}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                textAlign="center"
               >
-                Max width & height: 4096px | Max size: 2MB
-              </span>
-            </Form.Group>
+                <Asset
+                  src={Upload}
+                  message="Click to upload an image"
+                />
+              </Box>
+            )}
 
-            <div className="d-md-none">{renderTextFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>
-            {renderTextFields}
-          </Container>
-        </Col>
-      </Row>
-    </Form>
+            <input
+              type="file"
+              id="image-upload"
+              accept="image/*"
+              onChange={handleChangeImage}
+              ref={imageInput}
+              hidden
+            />
+            {errors?.image?.map((message, idx) => (
+              <Alert key={idx} severity="warning">
+                {message}
+              </Alert>
+            ))}
+
+            <Box mt={1} fontSize="0.8rem" color="text.secondary" fontStyle="italic">
+              Max width & height: 4096px | Max size: 2MB
+            </Box>
+          </Box>
+
+          {renderTextFields}
+        </Box>
+      </Box>
+    </form>
   );
 }
 

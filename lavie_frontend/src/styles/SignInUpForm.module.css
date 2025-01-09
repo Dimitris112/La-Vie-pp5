@@ -45,3 +45,17 @@
 .SignUpCol {
   height: 375px;
 }
+
+.Hint {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.PasswordRulesList {
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.MutedText {
+  color: #6c757d;
+}
