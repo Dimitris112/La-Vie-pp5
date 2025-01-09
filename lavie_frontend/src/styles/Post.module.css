@@ -4,11 +4,13 @@
   border-radius: 2px;
   margin-bottom: 16px;
   text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .Post figure,
 h5 {
   margin: 0 0;
+  color: #333;
 }
 
 .Heart {
@@ -28,6 +30,7 @@ h5 {
   cursor: pointer;
   margin-left: 10px;
 }
+
 .ReportIcon:hover {
   opacity: 0.8;
 }
@@ -37,4 +40,43 @@ h5 {
   color: gray;
   margin-left: 0.5rem;
   font-style: italic;
+}
+
+body[data-theme="dark"] .Post {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+  color: #fff; 
+}
+
+body[data-theme="dark"] .Post figure,
+body[data-theme="dark"] .Post h5 {
+  color: #fff;
+}
+
+body[data-theme="dark"] .Post .Heart {
+  color: #f85032;
+}
+
+body[data-theme="dark"] .Post .Heart:hover {
+  color: #2142b2;
+}
+
+body[data-theme="dark"] .Post .HeartOutline:hover {
+  color: #f85032;
+}
+
+body[data-theme="dark"] .Post .ReportIcon {
+  color: red;
+}
+
+body[data-theme="dark"] .Post .Edited {
+  color: #bbb;
+}
+
+body[data-theme="dark"] a {
+  color: #ffffff;
+}
+
+body[data-theme="dark"] a:hover {
+  color: #76a9fa;
 }

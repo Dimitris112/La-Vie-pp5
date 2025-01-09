@@ -3,10 +3,29 @@
   border: 1px solid #dadadf;
 }
 
+.NavBarDark {
+  background-color: #333333;
+  border: 1px solid #555555;
+}
+
 .NavLink {
   padding: 5px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.NavLinkDark {
+  color: #ffffff;
+}
+
+.NavLink:hover {
+  color: #2142b2;
 }
 
 .Active i {
   color: #2142b2;
+}
+
+.NavBarDark .Active i {
+  color: #ff6347;
 }

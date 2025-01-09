@@ -12,8 +12,10 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { FormControlLabel, Switch as MaterialSwitch } from "@mui/material";
+import { FaSun, FaMoon } from "react-icons/fa";
 
-const NavBar = () => {
+const NavBar = ({ darkMode, handleThemeChange }) => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
@@ -30,44 +32,50 @@ const NavBar = () => {
 
   const addPostIcon = (
     <NavLink
-      className={styles.NavLink}
+      className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
       activeClassName={styles.Active}
       to="/posts/create"
     >
       <i className="far fa-plus-square"></i>Add post
     </NavLink>
   );
+
   const loggedInIcons = (
     <>
       <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
         activeClassName={styles.Active}
         to="/feed"
       >
         <i className="fas fa-stream"></i>Feed
       </NavLink>
       <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
         activeClassName={styles.Active}
         to="/liked"
       >
         <i className="fas fa-heart"></i>Liked
       </NavLink>
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+      <NavLink
+        className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
+        to="/"
+        onClick={handleSignOut}
+      >
         <i className="fas fa-sign-out-alt"></i>Sign out
       </NavLink>
       <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
         to={`/profiles/${currentUser?.profile_id}`}
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
     </>
   );
+
   const loggedOutIcons = (
     <>
       <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
         activeClassName={styles.Active}
         to="/signin"
       >
@@ -75,7 +83,7 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         to="/signup"
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${darkMode ? styles.NavLinkDark : ""}`}
         activeClassName={styles.Active}
       >
         <i className="fas fa-user-plus"></i>Sign up
@@ -86,7 +94,7 @@ const NavBar = () => {
   return (
     <Navbar
       expanded={expanded}
-      className={styles.NavBar}
+      className={`${styles.NavBar} ${darkMode ? styles.NavBarDark : ""}`}
       expand="md"
       fixed="top"
     >
@@ -106,7 +114,9 @@ const NavBar = () => {
           <Nav className="ml-auto text-left">
             <NavLink
               exact
-              className={styles.NavLink}
+              className={`${styles.NavLink} ${
+                darkMode ? styles.NavLinkDark : ""
+              }`}
               activeClassName={styles.Active}
               to="/"
             >
@@ -114,6 +124,27 @@ const NavBar = () => {
             </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
+
+            <FormControlLabel
+              control={
+                <MaterialSwitch
+                  checked={darkMode}
+                  onChange={handleThemeChange}
+                  name="darkMode"
+                  color="primary"
+                />
+              }
+              label={
+                darkMode ? (
+                  <FaMoon size={24} color="yellow" />
+                ) : (
+                  <FaSun size={24} color="orange" />
+                )
+              }
+              style={{
+                marginLeft: "20px",
+              }}
+            />
           </Nav>
         </Navbar.Collapse>
       </Container>
