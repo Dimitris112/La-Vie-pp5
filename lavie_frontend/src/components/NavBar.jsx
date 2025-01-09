@@ -14,6 +14,7 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { FormControlLabel, Switch as MaterialSwitch } from "@mui/material";
 import { FaSun, FaMoon } from "react-icons/fa";
+import NotificationBell from "./NotificationBell";
 
 const NavBar = ({ darkMode, handleThemeChange }) => {
   const currentUser = useCurrentUser();
@@ -145,6 +146,7 @@ const NavBar = ({ darkMode, handleThemeChange }) => {
                 marginLeft: "20px",
               }}
             />
+            <NotificationBell />
           </Nav>
         </Navbar.Collapse>
       </Container>

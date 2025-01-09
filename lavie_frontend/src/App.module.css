@@ -162,3 +162,62 @@ i:hover {
   transition: color ease-in-out 0.3s;
   color: #2142b2;
 }
+
+body[data-theme="light"] .notificationButton {
+  color: #333;
+}
+
+body[data-theme="light"] .notificationBadge {
+  background: #007bff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="dark"] .notificationButton {
+  color: white;
+}
+
+body[data-theme="dark"] .notificationBadge {
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+body[data-theme="dark"] .notificationList {
+  background: #222;
+  color: #ddd;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+body[data-theme="dark"] .notificationItem {
+  border-bottom: 1px solid #444;
+  padding: 12px 15px;
+  transition: background 0.2s ease;
+}
+
+body[data-theme="dark"] .notificationItem:hover {
+  background: #333;
+  transform: scale(1.03);
+}
+
+body[data-theme="dark"] .notificationItem p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+body[data-theme="dark"] .notificationItem span {
+  font-size: 12px;
+  color: #aaa;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

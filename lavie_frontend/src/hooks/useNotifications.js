@@ -21,16 +21,39 @@ const useNotifications = () => {
 
   const markAsRead = useCallback(async (notificationId) => {
     try {
-      await axiosReq.patch(`/notifications/${notificationId}/mark-as-read/`);
+      await axiosReq.patch(`/notifications/${notificationId}/`, {
+        is_read: true,
+      });
       setNotifications((prev) =>
         prev.map((notif) =>
-          notif.id === notificationId ? { ...notif, read: true } : notif
+          notif.id === notificationId ? { ...notif, is_read: true } : notif
         )
       );
     } catch (err) {
       console.error("Failed to mark notification as read:", err);
     }
   }, []);
+
+  const markAllAsRead = useCallback(async () => {
+    try {
+      // Only get the notifications that are unread
+      const notificationIds = notifications
+        .filter((notif) => !notif.is_read)
+        .map((notif) => notif.id);
+
+      if (notificationIds.length === 0) return;
+
+      await axiosReq.patch("/notifications/mark-as-read/", {
+        notification_ids: notificationIds,
+      });
+
+      setNotifications((prev) =>
+        prev.map((notif) => ({ ...notif, is_read: true }))
+      );
+    } catch (err) {
+      console.error("Failed to mark all notifications as read:", err);
+    }
+  }, [notifications]);
 
   const clearNotifications = useCallback(async () => {
     try {
@@ -43,7 +66,7 @@ const useNotifications = () => {
 
   useEffect(() => {
     fetchNotifications();
-    const interval = setInterval(fetchNotifications, 60000); // Update every 60 seconds
+    const interval = setInterval(fetchNotifications, 60000);
     return () => clearInterval(interval);
   }, [fetchNotifications]);
 
@@ -53,6 +76,7 @@ const useNotifications = () => {
     error,
     fetchNotifications,
     markAsRead,
+    markAllAsRead,
     clearNotifications,
   };
 };

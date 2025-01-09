@@ -4,7 +4,6 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import BlockButton from "../../components/BlockButton";
-import NotificationBell from "../../components/NotificationBell";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -217,9 +216,6 @@ function ProfilePage() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
-      </Col>
-      <Col lg={2} className="d-none d-lg-block">
-        <NotificationBell />
       </Col>
 
       <Modal show={showReportModal} onHide={() => setShowReportModal(false)}>

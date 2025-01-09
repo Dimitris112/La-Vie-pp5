@@ -1,65 +1,43 @@
-.NotificationBell {
+.notificationBell {
   position: relative;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
 }
 
-.BellButton {
+.notificationButton {
   background: none;
   border: none;
   cursor: pointer;
   position: relative;
+  transition: transform 0.2s ease-in-out;
+  color: rgb(50, 50, 241);
+  background: transparent;
+  border: none;
 }
 
-.BellIcon {
-  color: #333;
+.notificationButton:hover {
+  transform: scale(1.1);
 }
 
-.UnreadCount {
+.notificationBadge {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background: red;
-  color: white;
+  top: -4px;
+  right: -4px;
+  color: rgb(246, 152, 152);
   border-radius: 50%;
   padding: 4px 6px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.Dropdown {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 250px;
-  z-index: 100;
-}
-
-.Loading,
-.Error {
-  padding: 10px;
-  color: #666;
-}
-
-.NotificationItem {
-  padding: 10px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-}
-
-.NotificationItem:hover {
-  background: #f9f9f9;
-}
-
-.UnreadNotification {
-  font-weight: bold;
-  background-color: #f5f5f5;
-}
-
-.ReadLabel {
   font-size: 10px;
-  color: green;
-  margin-left: 5px;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+body[data-theme="light"] .notificationBadge {
+  background: #d3d3d3;
+}
+
+body[data-theme="dark"] .notificationBadge {
+  background: white;
+  color: black;
 }
