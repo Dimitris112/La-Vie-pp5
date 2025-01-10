@@ -46,4 +46,4 @@ class Post(models.Model):
 
     def clean(self):
         if not self.content and not self.image:
-            raise ValidationError('Either content or an image must be provided.')
+            raise ValidationError('Either content or image must be provided.')

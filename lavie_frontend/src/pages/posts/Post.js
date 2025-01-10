@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from "react-bootstrap/Card";
@@ -23,7 +23,6 @@ const Post = (props) => {
     title,
     content,
     image,
-    is_edited,
     views,
     postPage,
     setPosts,
@@ -34,15 +33,6 @@ const Post = (props) => {
   const history = useHistory();
 
   const [showReportModal, setShowReportModal] = useState(false);
-  const [isPostUpdated, setIsPostUpdated] = useState(false);
-
-  useEffect(() => {
-    if (is_edited || title || content) {
-      setIsPostUpdated(true);
-    } else {
-      setIsPostUpdated(false);
-    }
-  }, [title, content, is_edited]);
 
   const handleCloseReportModal = () => setShowReportModal(false);
 
@@ -101,7 +91,6 @@ const Post = (props) => {
               {owner}
             </Link>
             <div className="d-flex flex-column align-items-end">
-              {isPostUpdated && <span className={styles.Edited}>(Edited)</span>}
               {is_owner && postPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
