@@ -1,32 +1,54 @@
-import { axiosReq, axiosRes } from "./axiosDefaults";
-import axios from "axios";
+import { axiosReq, axiosRes, setContentType } from "./axiosDefaults";
 
 export const blockUser = async (userId) => {
   try {
-    const response = await axiosReq.post("/blocks/", { blocked: userId });
+    setContentType(false); // Set Content-Type to application/json for this request
+    const response = await axiosReq.post(
+      "/blocks/",
+      { blocked: userId },
+      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+    );
+    console.log("Block user response:", response);
     return response.data;
   } catch (error) {
-    console.error("Error blocking user:", error);
+    console.error(
+      "Error blocking user:",
+      error.response ? error.response.data : error
+    );
     throw error;
   }
 };
 
 export const unblockUser = async (userId) => {
   try {
-    const response = await axiosRes.delete(`/blocks/${userId}/`);
+    setContentType(false);
+    const response = await axiosRes.delete(`/blocks/${userId}/`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    console.log("Unblock user response:", response);
     return response.data;
   } catch (error) {
-    console.error("Error unblocking user:", error);
+    console.error(
+      "Error unblocking user:",
+      error.response ? error.response.data : error
+    );
     throw error;
   }
 };
 
 export const fetchBlockedUsers = async () => {
   try {
-    const response = await axios.get("/api/blocks/list/");
+    setContentType(false);
+    const response = await axiosReq.get("/blocks/list/", {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    console.log("Blocked users:", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching blocked users:", error);
+    console.error(
+      "Error fetching blocked users:",
+      error.response ? error.response.data : error
+    );
     return [];
   }
 };

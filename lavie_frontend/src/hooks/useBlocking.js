@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchBlockedUsers } from "../api/blocks";
 import axios from "../api/axiosDefaults";
 
 const useBlocking = () => {
@@ -11,6 +12,15 @@ const useBlocking = () => {
     setLoading(true);
     setError(null);
     try {
+      // Check if user is already blocked
+      const blockedUsers = await fetchBlockedUsers();
+      const isBlocked = blockedUsers.some((user) => user.id === userId);
+
+      if (isBlocked) {
+        setError("You have already blocked this user.");
+        return;
+      }
+
       await axios.post("/blocks/", { blocked: userId });
       navigate(`/profiles/${userId}`);
     } catch (err) {

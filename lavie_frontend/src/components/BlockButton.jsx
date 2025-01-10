@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/BlockButton.module.css";
 
-function BlockButton({ userId, onBlock, onUnblock, isBlocked }) {
+function BlockButton({ userId, onBlock, onUnblock, isBlocked, error }) {
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
@@ -20,13 +20,16 @@ function BlockButton({ userId, onBlock, onUnblock, isBlocked }) {
   };
 
   return (
-    <button
-      className={styles.BlockButton}
-      onClick={handleClick}
-      disabled={loading}
-    >
-      {loading ? "Processing..." : isBlocked ? "Unblock" : "Block"}
-    </button>
+    <div>
+      <button
+        className={styles.BlockButton}
+        onClick={handleClick}
+        disabled={loading || error}
+      >
+        {loading ? "Processing..." : isBlocked ? "Unblock" : "Block"}
+      </button>
+      {error && <p className={styles.error}>{error}</p>}{" "}
+    </div>
   );
 }
 
