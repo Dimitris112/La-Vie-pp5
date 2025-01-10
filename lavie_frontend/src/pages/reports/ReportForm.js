@@ -33,12 +33,12 @@ function ReportForm({ type, objectId, show, handleClose }) {
         report_type: reportType,
       };
 
-      const response = await axios.post("/reports/", data);
+      const response = await axios.post(`/profiles/${objectId}/reports/`, data);
       setReportId(response.data.id);
 
       alert("Report submitted successfully.");
 
-      history.push(`/reports/${response.data.id}`);
+      history.push(`/profiles/${objectId}/reports/${response.data.id}`);
 
       handleClose();
     } catch (err) {

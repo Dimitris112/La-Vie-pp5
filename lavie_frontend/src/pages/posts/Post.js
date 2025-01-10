@@ -81,6 +81,16 @@ const Post = (props) => {
     }
   };
 
+  const handleReport = async () => {
+    try {
+      await axiosRes.post(`/profiles/${profile_id}/reports`, { post: id });
+      setShowReportModal(false);
+      alert("Post reported successfully.");
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
   return (
     <>
       <Card className={styles.Post}>
@@ -213,6 +223,7 @@ const Post = (props) => {
         objectId={id}
         show={showReportModal}
         handleClose={handleCloseReportModal}
+        handleReport={handleReport}
       />
     </>
   );
