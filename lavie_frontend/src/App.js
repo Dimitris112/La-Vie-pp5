@@ -18,9 +18,10 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
-import ReportsPage from "./pages/reports/ReportsPage";
 import { FaSun, FaMoon } from "react-icons/fa";
 import Footer from "./components/Footer";
+import UserBlocks from "./pages/profiles/UserBlocks";
+import UserReports from "./pages/profiles/UserReports";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -135,7 +136,16 @@ function App() {
                 path="/profiles/:id/edit/password"
                 render={() => <UserPasswordForm />}
               />
-              <Route exact path="/reports/:pk" render={() => <ReportsPage />} />
+              <Route
+                exact
+                path="/profiles/:id/blocked-users"
+                render={() => <UserBlocks />}
+              />
+              <Route
+                exact
+                path="/profiles/:id/reports"
+                render={() => <UserReports />}
+              />
               <Route exact path="*" render={() => <NotFound />} />
             </Switch>
           </Container>

@@ -70,6 +70,20 @@ export const ProfileEditDropdown = ({ id }) => {
           <i className="fas fa-key" />
           change password
         </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/reports`)}
+          aria-label="view-reports"
+        >
+          <i className="fas fa-flag" />
+          reports
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/blocked-users`)}
+          aria-label="view-blocked-users"
+        >
+          <i className="fas fa-ban" />
+          blocked users
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
