@@ -173,17 +173,28 @@ const Post = (props) => {
             </OverlayTrigger>
 
             {currentUser ? (
-              <span
-                className={`${styles.ReportButton} ml-3`}
-                onClick={() => setShowReportModal(true)}
-              >
+              owner === currentUser.username ? (
                 <OverlayTrigger
                   placement="top"
-                  overlay={<Tooltip>Report post</Tooltip>}
+                  overlay={<Tooltip>You can't report your own post!</Tooltip>}
                 >
-                  <i className="far fa-flag" />
+                  <span className={`${styles.ReportButton} ml-3`}>
+                    <i className="far fa-flag" />
+                  </span>
                 </OverlayTrigger>
-              </span>
+              ) : (
+                <span
+                  className={`${styles.ReportButton} ml-3`}
+                  onClick={() => setShowReportModal(true)}
+                >
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Report post</Tooltip>}
+                  >
+                    <i className="far fa-flag" />
+                  </OverlayTrigger>
+                </span>
+              )
             ) : (
               <OverlayTrigger
                 placement="top"
@@ -197,7 +208,6 @@ const Post = (props) => {
           </div>
         </Card.Body>
       </Card>
-
       <ReportForm
         type="post"
         objectId={id}
