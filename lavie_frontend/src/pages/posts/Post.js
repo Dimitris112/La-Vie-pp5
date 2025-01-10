@@ -109,7 +109,14 @@ const Post = (props) => {
           {title && <Card.Title className="text-center">{title}</Card.Title>}
           {content && <Card.Text>{content}</Card.Text>}
 
-          <div className={styles.PostBar}>
+          <div
+            className={styles.PostBar}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
@@ -119,11 +126,21 @@ const Post = (props) => {
               </OverlayTrigger>
             ) : like_id ? (
               <span onClick={handleUnlike}>
-                <i className={`fas fa-heart ${styles.Heart}`} />
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Like post</Tooltip>}
+                >
+                  <i className={`fas fa-heart ${styles.Heart}`} />
+                </OverlayTrigger>
               </span>
             ) : currentUser ? (
               <span onClick={handleLike}>
-                <i className={`far fa-heart ${styles.HeartOutline}`} />
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Like post</Tooltip>}
+                >
+                  <i className={`far fa-heart ${styles.HeartOutline}`} />
+                </OverlayTrigger>
               </span>
             ) : (
               <OverlayTrigger
@@ -135,22 +152,37 @@ const Post = (props) => {
             )}
             <span className="ml-1">{likes_count}</span>
 
-            <Link to={`/posts/${id}`} className="ml-3">
-              <i className="far fa-comments" />
-            </Link>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Total comments</Tooltip>}
+            >
+              <Link to={`/posts/${id}`} className="ml-3">
+                <i className="far fa-comments" />
+              </Link>
+            </OverlayTrigger>
             <span className="ml-1">{comments_count}</span>
 
-            <div className="ml-3">
-              <i className="fas fa-eye" />
-              <span className="ml-1">{views}</span>
-            </div>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Total views</Tooltip>}
+            >
+              <div className="ml-3 d-inline-flex align-items-center">
+                <i className="fas fa-eye" />
+                <span className="ml-1">{views}</span>
+              </div>
+            </OverlayTrigger>
 
             {currentUser ? (
               <span
                 className={`${styles.ReportButton} ml-3`}
                 onClick={() => setShowReportModal(true)}
               >
-                <i className="far fa-flag" />
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Report post</Tooltip>}
+                >
+                  <i className="far fa-flag" />
+                </OverlayTrigger>
               </span>
             ) : (
               <OverlayTrigger

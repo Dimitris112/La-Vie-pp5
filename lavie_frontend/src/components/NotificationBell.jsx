@@ -22,7 +22,7 @@ const NotificationBell = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const token = localStorage.getItem("jwt_token");
+        const token = localStorage.getItem("token");
         if (!token) {
           console.error("Token is missing");
           return;
@@ -74,7 +74,7 @@ const NotificationBell = () => {
   };
 
   const markAllAsRead = async () => {
-    const token = localStorage.getItem("jwt_token");
+    const token = localStorage.getItem("token");
     if (!token) return;
 
     try {

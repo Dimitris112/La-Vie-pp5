@@ -18,6 +18,11 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        const tokenResponse = await axios.post("/dj-rest-auth/token/refresh/");
+        localStorage.setItem("token", tokenResponse.data.access);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -26,13 +31,16 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount();
   }, []);
-  // refresh token -> 24 hours / access token -> 5 minutes
+// refresh token -> 24 hours / access token -> 5 minutes
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
         if (shouldRefreshToken()) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const tokenResponse = await axios.post("/dj-rest-auth/token/refresh/");
+            const newToken = tokenResponse.data.access;
+            localStorage.setItem("token", newToken);
+            config.headers.Authorization = `Bearer ${newToken}`;
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -40,15 +48,19 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
+            localStorage.removeItem("token");
             removeTokenTimestamp();
             return config;
+          }
+        } else {
+          const token = localStorage.getItem("token");
+          if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
           }
         }
         return config;
       },
-      (err) => {
-        return Promise.reject(err);
-      }
+      (err) => Promise.reject(err)
     );
 
     axiosRes.interceptors.response.use(
@@ -56,7 +68,11 @@ export const CurrentUserProvider = ({ children }) => {
       async (err) => {
         if (err.response?.status === 401) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const tokenResponse = await axios.post("/dj-rest-auth/token/refresh/");
+            const newToken = tokenResponse.data.access;
+            localStorage.setItem("token", newToken);
+            err.config.headers.Authorization = `Bearer ${newToken}`;
+            return axios(err.config);
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -64,6 +80,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
+            localStorage.removeItem("token");
             removeTokenTimestamp();
           }
           return axios(err.config);
