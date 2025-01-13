@@ -272,7 +272,7 @@ This project was developed using agile methodologies over a span of approximatel
 <br>
 
 <details>
-    <summary><strong>Create Post</strong></summary>
+    <summary><strong>Create - Edit - Delete Post</strong></summary>
     <p>
         The <strong>Create Post</strong> feature allows users to upload posts that include an image, a title, and content. To create a post, users click the <strong>"Upload"</strong> icon.
     </p>
@@ -289,11 +289,35 @@ This project was developed using agile methodologies over a span of approximatel
         Once the post is created, the user is redirected to the post's dedicated page where they can view or add comments. If no comments have been made yet, a message will appear: <strong>"No comments yet! Be the first one to comment!"</strong>
     </p>
 
+  <h3><strong>Edit Post</strong></h3>
+    <p>
+        Users can edit their posts by clicking the <strong>More</strong> dropdown button (three vertical dots) available on the post page. This dropdown provides an <strong>Edit</strong> option that redirects the user to the <code>posts/id/edit</code> page. 
+    </p>
+    <p>
+        On the edit page, users can:
+    </p>
+    <ul>
+        <li>Update the post's <strong>image</strong> by uploading a new one.</li>
+        <li>Edit the <strong>Title</strong> and <strong>Content</strong> of the post.</li>
+    </ul>
+    <p>
+        Similar to the create post feature, the <strong>Save Changes</strong> button will remain disabled until all required fields are filled out. A <strong>Cancel</strong> button is also available to discard changes and return to the post's page.
+    </p>
+
+  <h3><strong>Delete Post</strong></h3>
+    <p>
+        Deleting a post is also accessible from the <strong>More</strong> dropdown button. Within the dropdown, users will see a trashcan icon labeled <strong>Delete</strong>.
+    </p>
+    <ul>
+        <li>Clicking the <strong>Delete</strong> option instantly removes the post from the platform and the user is redirected to the homepage.</li>
+    </ul>
+
   <div style="text-align: center;">
-        <img src="documentation/images_gifs/create_post_light_dark.gif" alt="Create Post gif" style="max-width: 55%; height: auto;">
+        <img src="documentation/images_gifs/create_post_light_dark.gif" alt="Create, Edit, and Delete Post gif" style="max-width: 55%; height: auto;">
   </div>
 
 </details>
+
 
 <br>
 
@@ -376,6 +400,171 @@ This project was developed using agile methodologies over a span of approximatel
   <div style="text-align: center;">
         <img src="documentation/images_gifs/own_profile_page.gif" alt="Own profile page" style="max-width: 55%; height: auto;">
     </div>
+</details>
+
+<br>
+
+<details>
+  <summary><strong>Report Profile</strong></summary>
+
+  <p>
+    When a user clicks the <strong>Report</strong> button on another user's profile page, a modal opens with the following fields:
+  </p>
+  <ul>
+    <li><strong>Report Username's Profile:</strong> The title of the report modal indicating the profile being reported.</li>
+    <li><strong>Reason for Reporting:</strong> A text area where the reporting user can provide the reason for reporting the profile.</li>
+  </ul>
+
+  <p>
+    The user can either:
+  </p>
+  <ul>
+    <li><strong>Cancel:</strong> Close the modal without submitting the report and return to the profile page.</li>
+    <li><strong>Submit Report:</strong> Submit the report, which includes the reason and the profile being reported.</li>
+  </ul>
+
+  <p>
+    After submitting the report, the user is redirected to the <code>profiles/id/reports</code> page to view the report status and further actions taken by the platform. Also it's displayd inside the "Reported User" block and the "No reported users found." is gone.
+  </p>
+
+  <p>
+    The <strong>Report Profile</strong> feature includes:
+  </p>
+  <ul>
+    <li><strong>Backend:</strong> A report is created and stored in the database with details like the reported user, reporting user, and the reason for reporting.</li>
+    <li><strong>Frontend:</strong> A modal with a text area for the reason and buttons to submit or cancel the report.</li>
+    <li><strong>Redirect:</strong> After submission, the user is redirected to their reports page to see the status of the submitted report.</li>
+  </ul>
+
+  <p><strong>Status Choices:</strong> The report can have the following status:</p>
+
+```python
+STATUS_CHOICES = [
+    ('new', 'New'),
+    ('under_review', 'Under Review'),
+    ('resolved', 'Resolved'),
+]
+```
+
+   <div style="text-align: center;">
+        <img src="documentation/images_gifs/report_profile.png" alt="Own profile page" style="max-width: 55%; height: auto;">
+    </div>
+
+</details>
+
+<br>
+
+<details>
+  <summary><strong>Report Post</strong></summary>
+
+  <p>
+    Upon viewing a post, either on the homepage where all posts are displayed or on the specific post page, clicking the <strong>flag icon</strong> opens a modal for reporting the post. Only logged-in users who do not own the post can report it.
+  </p>
+
+  <p>
+    The <strong>Report Post</strong> modal includes the following fields:
+  </p>
+  <ul>
+    <li><strong>Report This Post:</strong> The title of the modal indicating the post being reported.</li>
+    <li><strong>Reason:</strong> A dropdown menu with the following options:
+      <ul>
+        <li><strong>Spam</strong></li>
+        <li><strong>Harassment</strong></li>
+        <li><strong>Inappropriate Content</strong></li>
+        <li><strong>Other</strong></li>
+      </ul>
+    </li>
+    <li><strong>Details (optional):</strong> A text area where the reporting user can provide additional details about the report.</li>
+    <li><strong>Confirmation:</strong> A checkbox with the text: "I confirm that I want to report this content."</li>
+  </ul>
+
+  <p>
+    The user can either:
+  </p>
+  <ul>
+    <li><strong>Cancel:</strong> Close the modal without submitting the report and return to the post.</li>
+    <li><strong>Submit Report:</strong> Submit the report with the selected reason and optional details.</li>
+  </ul>
+
+  <p>
+    After submitting the report, the following actions take place:
+  </p>
+  <ul>
+    <li><strong>Backend:</strong> The report is stored in the database, including details like the reported post, the reporting user, the reason, and optional details.</li>
+    <li><strong>Profiles Reports Page:</strong> The report is displayed under the "Posts by Reported Users" section on <code>profiles/id/reports</code>. If no reports existed before, the "No posts found for reported users." message is removed.</li>
+  </ul>
+
+  <p><strong>Status Choices:</strong> The report can have the following status:</p>
+
+```python
+STATUS_CHOICES = [
+    ('new', 'New'),
+    ('under_review', 'Under Review'),
+    ('resolved', 'Resolved'),
+]
+```
+
+   <div style="text-align: center;">
+        <img src="documentation/images_gifs/report_post.png" alt="Own profile page" style="max-width: 55%; height: auto;">
+    </div>
+</details>
+
+<br>
+
+<details>
+  <summary><strong>Block User</strong></summary>
+
+  <p>
+    On another user's profile page, a <strong>red Block button</strong> is displayed, allowing the user to block that profile. Once blocked:
+  </p>
+  <ul>
+    <li>The blocked profile will no longer appear on the user's feed or anywhere else in the app.</li>
+    <li>The blocked user is added to the <strong>Blocked Users</strong> section in the user's own profile page under <code>profiles/id/blocked-users</code>.</li>
+    <li>If the user was previously following the blocked profile, the follow relationship is automatically removed.</li>
+    <li>If the user unblocks the profile, they must manually follow the profile again to re-establish the connection.</li>
+  </ul>
+
+  <p>
+    If no users have been blocked before, the <strong>Blocked Users</strong> section displays the message: "No blocked users found." Once a user is blocked, their username appears in the list along with:
+  </p>
+  <ul>
+    <li><strong>Date:</strong> The date when the user was blocked.</li>
+    <li><strong>Unblock Button:</strong> A button to unblock the user, which removes them from the blocked list and restores their visibility in the app.</li>
+  </ul>
+
+  <p>
+    The <strong>Block User</strong> includes the following flow:
+  </p>
+  <ul>
+    <li><strong>Blocking:</strong> Clicking the <strong>Block</strong> button sends a request to the backend to:
+      <ul>
+        <li>Store the blocked user's information (e.g., username, date blocked).</li>
+        <li>Remove the follow relationship if the user was following the blocked profile.</li>
+      </ul>
+    </li>
+    <li><strong>Viewing Blocked Users:</strong> Users can navigate to <code>profiles/id/blocked-users</code> from their own profile to see a list of blocked users.</li>
+    <li><strong>Unblocking:</strong> Clicking the <strong>Unblock</strong> button:
+      <ul>
+        <li>Removes the user from the blocked list.</li>
+        <li>Restores the user's visibility in the app.</li>
+        <li>The follow relationship is not automatically restored - users must manually follow the profile again.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>
+    The backend manages the block/unblock functionality with endpoints for:
+  </p>
+  <ul>
+    <li><strong>Block User:</strong> Creates a block record in the database and removes the follow relationship if it exists.</li>
+    <li><strong>Unblock User:</strong> Deletes the block record from the database.</li>
+    <li><strong>Fetch Blocked Users:</strong> Retrieves the list of blocked users for the logged-in user.</li>
+  </ul>
+
+  <div style="text-align: center;">
+    <img src="documentation/images_gifs/block_user.png" alt="Block User Feature" style="max-width: 55%; height: auto;">
+  </div>
+
 </details>
 
 #### [🔙 Back to content](#content)
@@ -526,7 +715,7 @@ The wireframes have been designed for both PC and mobile screens to provide a vi
 
 ## Testing
 
-For a detailed overview of both manual and automated testing processes, please refer to [TESTING.md](https://github.com/Dimitris112/rum-away-testp4/blob/main/TESTING.md). It covers all testing scenarios and methodologies used in the project.
+For a detailed overview of both manual and automated testing processes, please refer to [TESTING.md](https://github.com/Dimitris112/La-Vie-pp5/blob/main/TESTING.md).
 
 #### [🔙 Back to content](#content)
 
