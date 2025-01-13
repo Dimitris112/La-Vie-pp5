@@ -1115,6 +1115,8 @@ The application includes several measures to ensure data security and protect us
 
 ### Unfixed Bugs
 
+- Since the last testing phase, blocking/reporting/receiving notifications don't work as expected _access-tokens_ (14-01-2025). At this stage I cannot fix these issues, I'm sorry. It's on the upcoming patching issues.
+
 #### [🔙 Back to content](#content)
 
 ## Testing
