@@ -1,8 +1,9 @@
-<h1 align="center">📱✨ <a href=https://la-vie-pp5-c334770967ef.herokuapp.com/>La Vie | Own IT</a> ✨📱</h1>
+<h1 align="center">📱✨ <a href="https://la-vie-pp5-c334770967ef.herokuapp.com/">La Vie | Own IT</a> ✨📱</h1>
 
-![Responsiveness_light](documentation/images_gifs/responsive_light.png)
-
-![Responsiveness_dark](documentation/images_gifs/responsive_dark.png)
+<div style="text-align: center;">
+  <img src="documentation/images_gifs/responsive_light.png" alt="Responsiveness Light" width="600" height="auto" />
+  <img src="documentation/images_gifs/responsive_dark.png" alt="Responsiveness Dark" width="600" height="auto" />
+</div>
 
 ## The purpose of this project is a web-based social media platform called **La Vie**, designed to provide users with a safe and engaging space to share content, interact with others, and customize their experience. Built using **React** and **Django REST Framework**, the platform uses a modern and dynamic interface alongside a robust backend system.
 
@@ -1009,6 +1010,110 @@ The application includes several measures to ensure data security and protect us
 - **Error Handling**: Detailed error messages are disabled to prevent exposure of sensitive information.
 - **Secure Storage**: Uploaded files are stored securely using Cloudinary.
 - **CORS Protection**: Configured CORS headers to restrict resource sharing to trusted domains.
+
+#### [🔙 Back to content](#content)
+
+## Issues
+
+### Fixed Bugs
+
+<details>
+    <summary>Patch 1.0.0</summary>
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Description of Fix</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Bug in Reporting System</td>
+            <td>Fixed an issue where the reporting system was malfunctioning for some users.</td>
+            <td>Pass</td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Patch 1.0.1</summary>
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Description of Fix</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Notification Issue</td>
+            <td>Resolved an issue where notifications were not being sent to users correctly.</td>
+            <td>Pass</td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Patch 1.0.2</summary>
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Description of Fix</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Notifications UI Fix</td>
+            <td>Fixed notifications UI, making sure all notifications are now shown correctly for users.</td>
+            <td>Pass</td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Patch 1.0.3</summary>
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Description of Fix</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Fixed Profile Image Upload</td>
+            <td>Addressed an issue where users could not upload profile images correctly.</td>
+            <td>Pass</td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Patch 1.0.4</summary>
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Description of Fix</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Data Fetching Issue</td>
+            <td>Corrected issues with fetching data on several pages.</td>
+            <td>Pass</td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Patch 1.0.5</summary>
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Description of Fix</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Notifications Mark as Read</td>
+            <td>Fixed notifications reading functionality, allowing users to mark notifications as read.</td>
+            <td>Pass</td>
+        </tr>
+    </table>
+</details>
+
+### Unfixed Bugs
 
 #### [🔙 Back to content](#content)
 
