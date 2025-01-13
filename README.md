@@ -53,6 +53,8 @@ The platform is built with **React** for the front-end, **Django REST Framework*
 
 - [Database design](#database-design)
 
+- [Relationship Overview](#relationships-overview)
+
 [Technology stack](#technology-stack)
 
 - [Technology used](#technology-used)
@@ -318,7 +320,6 @@ This project was developed using agile methodologies over a span of approximatel
 
 </details>
 
-
 <br>
 
 <details>
@@ -573,61 +574,100 @@ STATUS_CHOICES = [
 
 The wireframes have been designed for both PC and mobile screens to provide a visual representation of each page's layout and functionality.
 
-## Database Design
+### Database Design
+
+The database was designed to facilitate CRUD operations for registered users and maintain seamless functionality across various features.
+
+---
+
+Users can register, log in, and manage their profiles, which allows them to create and update personal information and profile pictures in the Profile table.
+
+---
+
+Posts enable users to create, view, and update their content, with relevant details such as title, content, and creation time stored in the Post table.
+
+---
+
+Users can also interact with posts through likes, comments, and reports, enhancing community engagement. Each like and comment is linked to specific posts and users.
+
+---
+
+Followers allow users to follow one another, creating relationships that support notifications, news feeds, and user interactions.
+
+---
+
+Notifications help users track various activities, such as new likes, comments, and posts from followed users.
+
+---
+
+Block allows users to block other users. The Block table stores information about the user initiating the block (blocker) and the user being blocked (blocked). This ensures that a blocked user cannot interact with the blocker. The Block table has a unique constraint to prevent duplicate block entries between the same pair of users.
+
+---
+
+Reports enable users to flag inappropriate content or behavior, linking the reporter and the reported user.
+
+---
+
+The ERD (Entity Relationship Diagram) was designed on **[Mermaid.js](http://mermaid.js.org/#/)**.
+
+---
 
 ### Relationships Overview
 
-1. **User**
-   - A user has:
-     - One-to-One relationship with `Profile`.
-     - One-to-Many relationship with `Post`.
-     - One-to-Many relationship with `Comment`.
-     - Many-to-Many relationship with other users via `Follower`.
-     - Many-to-Many relationship with `Post` via `Like`.
-     - One-to-Many relationship with `Notification`.
-     - Many-to-Many relationship with other users via `Report`.
+- **User**
 
-2. **Profile**
-   - A profile:
-     - Belongs to one `User` (One-to-One).
+  - One-to-One relationship with `Profile`.
+  - One-to-Many relationship with `Post`.
+  - One-to-Many relationship with `Comment`.
+  - Many-to-Many relationship with other users via `Follower`.
+  - Many-to-Many relationship with `Post` via `Like`.
+  - One-to-Many relationship with `Notification`.
+  - Many-to-Many relationship with other users via `Report`.
+  - One-to-Many relationship with `Block` (as the blocker).
 
-3. **Post**
-   - A post:
-     - Belongs to one `User` (Many-to-One).
-     - Has many `Comments` (One-to-Many).
-     - Can be liked by many users via `Like` (Many-to-Many).
+- **Profile**
 
-4. **Comment**
-   - A comment:
-     - Belongs to one `Post` (Many-to-One).
-     - Belongs to one `User` (Many-to-One).
+  - Belongs to one `User` (One-to-One).
 
-5. **Like**
-   - A like:
-     - Belongs to one `User` (Many-to-One).
-     - Belongs to one `Post` (Many-to-One).
+- **Post**
 
-6. **Follower**
-   - A follower relationship:
-     - Links two users (Many-to-Many, self-referential).
+  - Belongs to one `User` (Many-to-One).
+  - Has many `Comments` (One-to-Many).
+  - Can be liked by many users via `Like` (Many-to-Many).
 
-7. **Notification**
-   - A notification:
-     - Belongs to one recipient user (Many-to-One).
-     - Belongs to one actor user (Many-to-One).
-     - Can reference various types of actions or entities via `target_id` (Polymorphic).
+- **Comment**
 
-8. **Report**
-   - A report:
-     - Links two users (Many-to-Many, self-referential).
+  - Belongs to one `Post` (Many-to-One).
+  - Belongs to one `User` (Many-to-One).
+
+- **Like**
+
+  - Belongs to one `User` (Many-to-One).
+  - Belongs to one `Post` (Many-to-One).
+
+- **Follower**
+
+  - Links two users (Many-to-Many, self-referential).
+
+- **Notification**
+
+  - Belongs to one recipient user (Many-to-One).
+  - Belongs to one actor user (Many-to-One).
+  - Can reference various types of actions or entities via `target_id` (Polymorphic).
+
+- **Report**
+
+  - Links two users (Many-to-Many, self-referential).
+
+- **Block**
+  - One-to-Many relationship between the `blocker` (initiator) and `blocked` (receiver) user.
+  - Each `Block` links a pair of users: the user who blocks (`blocker`) and the user being blocked (`blocked`).
 
 ---
 
 <div style="text-align: center;">
   <img src="documentation/images_gifs/erd.png" alt="Entity-Relationship Diagram" style="max-width: 55%; height: auto;">
 </div>
-
-
 
 #### [🔙 Back to content](#content)
 
@@ -766,7 +806,7 @@ The wireframes have been designed for both PC and mobile screens to provide a vi
 - **[Favicon.io](https://favicon.io/favicon-converter/):** Used to generate the favicon.
 - **[Balsamiq](https://balsamiq.com/wireframes/desktop/):** Used to create wireframes (desktop version).
 - **[TinyPNG](https://tinypng.com/):** Used to compress each image for optimal load times.
-- **[Eraser.io](https://www.eraser.io/ai/erd-generator):** Used for generating the Entity-Relationship Diagram (ERD).
+- **[Mermaid.js.org](http://mermaid.js.org/#/):** Used for generating the Entity-Relationship Diagram (ERD).
 
 #### [🔙 Back to content](#content)
 
