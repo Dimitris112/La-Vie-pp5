@@ -39,6 +39,8 @@
 
 The platform is built with **React** for the front-end, **Django REST Framework** for the back-end, and **PostgreSQL** for reliable database management, ensuring scalability, performance, and security.
 
+## [Content](#content)
+
 [User Stories](#user-stories)
 
 [User Experience](#user-experience)
@@ -53,7 +55,12 @@ The platform is built with **React** for the front-end, **Django REST Framework*
 
 [Technology stack](#technology-stack)
 
+- [Technology used](#technology-used)
+
+- [Other dependencies](#other-dependencies)
+
 - [Tools used](#tools-used)
+
 
 [Issues](#issues)
 
@@ -170,6 +177,8 @@ The platform is built with **React** for the front-end, **Django REST Framework*
 
 </details>
 
+#### [🔙 Back to content](#content)
+
 ## User Experience
 
 ### Typography & Color Scheme
@@ -194,6 +203,8 @@ This project was developed using agile methodologies over a span of approximatel
 </div>
 
 </details>
+
+#### [🔙 Back to content](#content)
 
 ### Features
 
@@ -329,14 +340,141 @@ This project was developed using agile methodologies over a span of approximatel
 
 </details>
 
+<br>
+
+<details>
+  <summary><strong>Own Profile Page</strong></summary>
+  <p>
+        On their <strong>Own Profile Page</strong>, users can view the following details about their profile:
+  </p>
+    <ul>
+        <li><strong>Avatar:</strong> The profile image of the user.</li>
+        <li><strong>Username:</strong> The username of the user.</li>
+        <li><strong>Posts Count:</strong> The number of posts made by the user.</li>
+        <li><strong>Followers Count:</strong> The number of followers the user has.</li>
+        <li><strong>Following Count:</strong> The number of users the user is following.</li>
+        <li><strong>Bio:</strong> The bio of the user, if they have added one.</li>
+    </ul>
+    
+  <p>
+        There is a <strong>three dots menu</strong> that opens a set of options for the user:
+    </p>
+  <ul>
+        <li><strong>Edit Profile:</strong> Takes the user to <code>profiles/id/edit</code> where the user can update their avatar and bio. Includes an avatar upload area with the text: "📸 Upload your photo" and a text area for the bio. The page includes a <strong>Cancel</strong> and <strong>Save</strong> button.</li>
+        <li><strong>Change Username:</strong> Takes the user to <code>profiles/id/edit/username</code>, where the user can change their username. The form includes a <strong>Cancel</strong> and <strong>Save</strong> button.</li>
+        <li><strong>Change Password:</strong> Takes the user to <code>profiles/id/edit/password</code>, where they can update their password with fields for a new password and confirm new password. The page includes a <strong>Cancel</strong> and <strong>Save</strong> button.</li>
+        <li><strong>Reports:</strong> Takes the user to <code>profiles/id/reports</code>, where a modal displays <strong>Reported Users</strong> and <strong>Posts by Reported Users</strong>. If no reports exist, the modal shows: "No reported users found." and "No posts found by reported users."</li>
+        <li><strong>Blocked Users:</strong> Takes the user to <code>profiles/id/blocked-users</code>, where a modal displays a list of blocked users. If no blocked users exist, the modal shows: "No blocked users found."</li>
+   </ul>
+    
+  <p>
+        Below the profile details, if the user has created posts, a section labeled <strong>Username's Posts</strong> is displayed, showcasing the user's posts. Clicking on a post will take the user to the specific post page.
+  </p>
+  <p>
+        If no posts exist, a message will be displayed: "No results found. _Username_ hasn't posted yet."
+  </p>
+    
+  <div style="text-align: center;">
+        <img src="documentation/images_gifs/own_profile_page.gif" alt="Own profile page" style="max-width: 55%; height: auto;">
+    </div>
+</details>
+
+#### [🔙 Back to content](#content)
+
 ### Wireframes
 
 The wireframes have been designed for both PC and mobile screens to provide a visual representation of each page's layout and functionality.
 
+#### [🔙 Back to content](#content)
+
+## Technology Stack
+
+### Technology Used
+
+<details>
+  <summary>Click to view the Technology Used</summary>
+  <table>
+    <tr>
+      <td><strong>Backend</strong></td>
+      <td style="text-align:right;">Django 5.1.1 <code>Django==5.1.1</code></td>
+    </tr>
+    <tr>
+      <td><strong>API</strong></td>
+      <td style="text-align:right;">Django REST Framework <code>djangorestframework==3.15.2</code></td>
+    </tr>
+    <tr>
+      <td><strong>Database</strong></td>
+      <td style="text-align:right;">PostgreSQL <code>psycopg2==2.9.9</code></td>
+    </tr>
+    <tr>
+      <td><strong>Authentication</strong></td>
+      <td style="text-align:right;">Django Allauth <code>django-allauth==64.2.1</code></td>
+    </tr>
+    <tr>
+      <td><strong>Frontend</strong></td>
+      <td style="text-align:right;">JavaScript, JSON, HTML5, CSS3</td>
+    </tr>
+    <tr>
+      <td><strong>Styling</strong></td>
+      <td style="text-align:right;">Crispy Forms + Bootstrap 5 <code>crispy-bootstrap5==2024.2</code></td>
+    </tr>
+    <tr>
+      <td><strong>Media Storage</strong></td>
+      <td style="text-align:right;">Cloudinary <code>cloudinary==1.41.0</code></td>
+    </tr>
+    <tr>
+      <td><strong>Static Files</strong></td>
+      <td style="text-align:right;">Whitenoise <code>whitenoise==6.7.0</code></td>
+    </tr>
+    <tr>
+      <td><strong>Server</strong></td>
+      <td style="text-align:right;">Gunicorn <code>gunicorn==23.0.0</code></td>
+    </tr>
+    <tr>
+      <td><strong>Image Handling</strong></td>
+      <td style="text-align:right;">Pillow <code>pillow==10.4.0</code></td>
+    </tr>
+  </table>
+</details>
+
+### Other Dependencies
+
+<details>
+  <summary>Click to view the Other Dependencies</summary>
+  <ul>
+    <li><code>asgiref==3.8.1</code></li>
+    <li><code>dj-database-url==2.2.0</code></li>
+    <li><code>dj3-cloudinary-storage==0.0.6</code></li>
+    <li><code>django-crispy-forms==2.3</code></li>
+    <li><code>django-summernote==0.8.20.0</code></li>
+    <li><code>oauthlib==3.2.2</code></li>
+    <li><code>PyJWT==2.9.0</code></li>
+    <li><code>python3-openid==3.2.0</code></li>
+    <li><code>requests-oauthlib==2.0.0</code></li>
+    <li><code>sqlparse==0.5.1</code></li>
+    <li><code>urllib3==1.26.20</code></li>
+  </ul>
+</details>
+
+---
+
+### Tools Used
+
+- **Git:** Used commands such as `git add`, `commit -m "message"`, and `push`.
+- **Gitpod:** Used as the integrated development environment (IDE).
+- **GitHub:** Used for code hosting.
+- **[Font Awesome](https://fontawesome.com/):** Used for a variety of icons across the pages.
+- **[Favicon.io](https://favicon.io/favicon-converter/):** Used to generate the favicon.
+- **[Balsamiq](https://balsamiq.com/wireframes/desktop/):** Used to create wireframes (desktop version).
+- **[TinyPNG](https://tinypng.com/):** Used to compress each image for optimal load times.
+
+#### [🔙 Back to content](#content)
 
 ## Testing
 
 For a detailed overview of both manual and automated testing processes, please refer to [TESTING.md](https://github.com/Dimitris112/rum-away-testp4/blob/main/TESTING.md). It covers all testing scenarios and methodologies used in the project.
+
+#### [🔙 Back to content](#content)
 
 ## Deployment
 
@@ -363,6 +501,8 @@ Forking a repository is commonly done to contribute to another developer's proje
 1. Click the **Fork** button at the top right of the repository page.
 2. This will create a copy of the repository in your own GitHub account, which you can modify independently.
 
+#### [🔙 Back to content](#content)
+
 ## Credits
 
 🎓 **𝕽𝖔𝖍𝖎𝖙** - **Code Institute Mentor** [<img src="https://img.icons8.com/color/24/ffffff/github.png"/>](https://github.com/rohit0286)
@@ -374,3 +514,5 @@ The main idea for this project was obtained by the [DRF-API / Moments](https://w
 ### Media
 
 All photos used in the project - including favicon - were taken from [Pexels](https://www.pexels.com/) / [Unsplash](https://unsplash.com/) / [Freepik](https://www.freepik.com/).
+
+#### [🔙 Back to content](#content)
