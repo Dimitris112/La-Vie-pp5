@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Notification
 from django.contrib.contenttypes.models import ContentType
 
+
 class NotificationSerializer(serializers.ModelSerializer):
     """
     Includes `content_type` and `content_object` for related objects.
@@ -11,10 +12,10 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = [
-            'user', 'message', 'notification_type', 'content_type', 
+            'user', 'message', 'notification_type', 'content_type',
             'object_id', 'content_object', 'is_read', 'created_at'
         ]
-    
+
     def get_content_object(self, obj):
         """
         This method returns the related object based on

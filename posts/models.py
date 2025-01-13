@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+
 class Post(models.Model):
     """
     Post model, related to 'owner', i.e. a User instance.

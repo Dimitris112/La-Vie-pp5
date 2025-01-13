@@ -44,7 +44,7 @@ class NotificationMarkAsRead(APIView):
         except Notification.DoesNotExist:
             return Response(
                 {"error": "Notification not found or does not belong to the "
-                           "authenticated user"},
+                          "authenticated user"},
                 status=status.HTTP_404_NOT_FOUND
             )
 

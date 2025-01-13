@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
 from reports.models import Report
-from blocks.models import Block 
+from blocks.models import Block
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -39,6 +39,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'following_id',
-            'posts_count', 'followers_count', 'following_count', 
+            'posts_count', 'followers_count', 'following_count',
             'reports_count', 'blocks_count',
         ]
