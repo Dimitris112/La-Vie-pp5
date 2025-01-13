@@ -574,6 +574,83 @@ STATUS_CHOICES = [
 
 The wireframes have been designed for both PC and mobile screens to provide a visual representation of each page's layout and functionality.
 
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <th style="text-align: center;">Blocked Users</th>
+        <th style="text-align: center;">Create Post</th>
+        <th style="text-align: center;">Edit Password</th>
+        <th style="text-align: center;">Edit Profile</th>
+        <th style="text-align: center;">Edit Username</th>
+    </tr>
+    <tr>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Blocked_users_mobile_wireframe.png" alt="Blocked Users Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Blocked_users_pc_wireframe.png" alt="Blocked Users PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Create_post_mobile_wireframe.png" alt="Create Post Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Create_post_pc_wireframe.png" alt="Create Post PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Edit_password_mobile_wireframe.png" alt="Edit Password Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Edit_password_pc_wireframe.png" alt="Edit Password PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Edit_profile_mobile_wireframe.png" alt="Edit Profile Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Edit_profile_pc_wireframe.png" alt="Edit Profile PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Edit_username_mobile_wireframe.png" alt="Edit Username Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Edit_username_pc_wireframe.png" alt="Edit Username PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th style="text-align: center;">Homepage</th>
+        <th style="text-align: center;">Other Profiles</th>
+        <th style="text-align: center;">Own Profile</th>
+        <th style="text-align: center;">Reports</th>
+    </tr>
+    <tr>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Homepage_mobile_wireframe.png" alt="Homepage Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Homepage_pc_wireframe.png" alt="Homepage PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Other_profiles_mobile_wireframe.png" alt="Other Profiles Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Other_profiles_pc_wireframe.png" alt="Other Profiles PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Own_profile_mobile_wireframe.png" alt="Own Profile Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Own_profile_pc_wireframe.png" alt="Own Profile PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;">
+                <img src="documentation/wireframes/Reports_mobile_wireframe.png" alt="Reports Mobile Wireframe" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                <img src="documentation/wireframes/Reports_pc_wireframe.png" alt="Reports PC Wireframe" style="max-width: 100%; height: auto;">
+            </div>
+        </td>
+        <td style="text-align: center; vertical-align: top;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-wrap: wrap;"></div>
+        </td>
+    </tr>
+</table>
+
 ### Database Design
 
 The database was designed to facilitate CRUD operations for registered users and maintain seamless functionality across various features.
