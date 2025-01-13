@@ -1032,6 +1032,9 @@ For a detailed overview of both manual and automated testing processes, please r
 6. Click **Add buildpack** and choose `python`.
 7. Now you're set. Go back to `Deploy` and click **Deploy branch**.
 
+8. **_FRONTEND DISCLAIMER_** to have in mind. In order for your project to be up to date, you need to run a specific command in order to collect staticfiles. You will need to re-run this command any time you want to deploy changes to the static files in your project, including the React code.
+   > npm run build && rm -rf ../staticfiles/build && mv build ../staticfiles/.
+
 <div style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
     <img src="documentation/images_gifs/env_messaage.png" alt="Environment Message" style="max-width: 45%; height: auto;">
 </div>
