@@ -57,11 +57,15 @@ The platform is built with **React** for the front-end, **Django REST Framework*
 
 [Technology stack](#technology-stack)
 
+- [Reuseability](#reusability)
+
 - [Technology used](#technology-used)
 
 - [Other dependencies](#other-dependencies)
 
 - [Tools used](#tools-used)
+
+- [Security](#security)
 
 [Issues](#issues)
 
@@ -750,6 +754,114 @@ The ERD (Entity Relationship Diagram) was designed on **[Mermaid.js](http://merm
 
 ## Technology Stack
 
+### Reusability
+
+To maintain consistency and reduce redundancy, I used a reusable component-based structure. Below are some of the key reusable elements and where they are used in the application:
+
+<details>
+<summary><strong>API and Utilities</strong></summary>
+
+- **`axiosDefaults.js`**: Configures default Axios settings for API requests.
+  - Used throughout the app for API requests in components like `PostPage.js`, `ProfilePage.js`, etc.
+- **`blocks.js`**: Manages block-related API requests.
+  - Used in `ProfilePage.js` to handle blocking/unblocking users.
+- **`dateUtils.js`**: Utility functions for handling dates (e.g., formatting dates).
+  - Used in `PostsPage.js` and `ProfilePage.js` to format date fields.
+- **`utils.js`**: Helper functions for common operations like data manipulation and validation.
+  - Used in multiple places, including `SignUpForm.js` and `PostCreateForm.js`.
+
+</details>
+
+<details>
+<summary><strong>Reusable Components</strong></summary>
+
+- **`Asset.jsx`**: Displays a spinner, image, or message when loading data.
+  - Used in `PostPage.js`, `NotFound.js`, and `PostsPage.js` for loading indicators.
+- **`Avatar.jsx`**: Handles user avatars and static image placeholders.
+  - Used in `NavBar.js`, `Profile.js`, `Comment.js`, and `Post.js` to display user avatars.
+- **`BlockButton.jsx`**: Provides a button for blocking/unblocking users.
+  - Used in `ProfilePage.js` to block/unblock users.
+- **`Footer.jsx`**: Renders the application footer.
+  - Used in `App.js` to display the footer across all pages.
+- **`MoreDropdown.jsx`**: A configurable dropdown menu for actions like editing or deleting.
+  - Used in `Post.js`, `Comment.js`, and `ProfilePage.js` for actions on posts, comments, or profile.
+- **`NavBar.jsx`**: Renders the navigation bar for the app.
+  - Used in `App.js` to display the navigation bar on all pages.
+- **`NotFound.jsx`**: Displays a "Not Found" message when content is unavailable.
+  - Used in `App.js` to show when a non-existent page is accessed. Also used in `PostsPage.js` and `ProfilePage.js` when no posts or profiles are found.
+- **`NotificationBell.jsx`**: Displays notifications and indicates unread alerts.
+  - Used in `NavBar.js` to show notifications to users.
+
+</details>
+
+<details>
+<summary><strong>Contexts</strong></summary>
+
+- **`CurrentUserContext.js`**: Provides context for the current user’s data (e.g., username, avatar).
+  - Used in `NavBar.js`, `ProfilePage.js`, and `PostsPage.js` to get current user data.
+- **`ProfileDataContext.js`**: Manages context for profile-specific data (e.g., bio, followers).
+  - Used in `ProfilePage.js` and `ProfileEditForm.js` to load and update profile information.
+
+</details>
+
+<details>
+<summary><strong>Custom Hooks</strong></summary>
+
+- **`useBlocking.js`**: Handles blocking/unblocking logic.
+  - Used in `ProfilePage.js` to manage user block functionality.
+- **`useClickOutsideToggle.js`**: Toggles dropdowns or modals when clicking outside.
+  - Used in `MoreDropdown.js` and `NotificationBell.js` to close the dropdowns when clicking outside.
+- **`useNotifications.js`**: Manages notifications and alerts.
+  - Used in `NotificationBell.js` to fetch and display notifications.
+- **`useRedirect.js`**: Handles page redirects based on conditions (e.g., after successful login).
+  - Used in `SignUpForm.js` and `SignInForm.js` to redirect users after authentication.
+
+</details>
+
+<details>
+<summary><strong>Pages and Forms</strong></summary>
+
+- **`SignInForm.js`**: Handles user login functionality.
+  - Used in `App.js` for the sign-in page (`/signin`).
+- **`SignUpForm.js`**: Manages user registration process.
+  - Used in `App.js` for the sign-up page (`/signup`).
+- **`Comment.js`**: Displays a comment with options to edit or delete.
+  - Used in `PostPage.js` to render comments on posts.
+- **`CommentCreateForm.js`**: Form for creating new comments.
+  - Used in `PostPage.js` to allow users to post new comments.
+- **`CommentEditForm.js`**: Form for editing existing comments.
+  - Used in `Comment.js` to allow users to edit their comments.
+- **`Post.js`**: Displays individual post content.
+  - Used in `PostsPage.js` and `PostPage.js` to display posts.
+- **`PostCreateForm.js`**: Form for creating new posts.
+  - Used in `PostsPage.js` for creating new posts.
+- **`PostEditForm.js`**: Form for editing existing posts.
+  - Used in `PostPage.js` to allow post editing.
+- **`PostPage.js`**: Detailed view of a specific post.
+  - Used in `App.js` to display the detailed post page (`/posts/:id`).
+- **`PostsPage.js`**: Displays a list of posts based on filters.
+  - Used in `App.js` to show the feed of posts (`/posts`).
+- **`Profile.js`**: Renders user profile information.
+  - Used in `ProfilePage.js` to show the user's profile.
+- **`ProfileEditForm.js`**: Form for editing user profile details.
+  - Used in `ProfilePage.js` to allow users to update their profile.
+- **`ProfilePage.js`**: Displays a user's profile with posts and followers.
+  - Used in `App.js` to show user profiles (`/profiles/:username`).
+- **`UserBlocks.js`**: Shows users that have been blocked by the current user.
+  - Used in `ProfilePage.js` to list blocked users.
+- **`UsernameForm.js`**: Allows users to change their username.
+  - Used in `ProfilePage.js` to enable users to update their username.
+- **`UserPasswordForm.js`**: Form for users to change their password.
+  - Used in `ProfilePage.js` to allow password updates.
+- **`UserReports.js`**: Displays reports submitted by the user.
+  - Used in `ProfilePage.js` to display reports the user has made.
+- **`ReportCard.js`**: Displays a single report in the reports page.
+  - Used in `ReportsPage.js` to display detailed reports.
+- **`ReportForm.js`**: Form for submitting reports.
+  - Used in `PostPage.js` to report inappropriate content.
+
+</details>
+
 ### Technology Used
 
 <details>
@@ -884,6 +996,19 @@ The ERD (Entity Relationship Diagram) was designed on **[Mermaid.js](http://merm
 - **[Balsamiq](https://balsamiq.com/wireframes/desktop/):** Used to create wireframes (desktop version).
 - **[TinyPNG](https://tinypng.com/):** Used to compress each image for optimal load times.
 - **[Mermaid.js.org](http://mermaid.js.org/#/):** Used for generating the Entity-Relationship Diagram (ERD).
+
+### Security
+
+The application includes several measures to ensure data security and protect user information:
+
+- **Authentication**: Secure user login with JWT tokens and email verification through Django Allauth.
+- **Password Encryption**: All passwords are encrypted using Django's default hashing mechanism (PBKDF2).
+- **Data Transmission**: All communication between the client and server is secured using HTTPS.
+- **Input Validation**: Forms and API requests are validated to prevent malicious input (e.g., SQL injection, XSS).
+- **Access Control**: Sensitive endpoints are protected with role-based access controls and permissions.
+- **Error Handling**: Detailed error messages are disabled to prevent exposure of sensitive information.
+- **Secure Storage**: Uploaded files are stored securely using Cloudinary.
+- **CORS Protection**: Configured CORS headers to restrict resource sharing to trusted domains.
 
 #### [🔙 Back to content](#content)
 
