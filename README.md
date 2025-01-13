@@ -573,6 +573,62 @@ STATUS_CHOICES = [
 
 The wireframes have been designed for both PC and mobile screens to provide a visual representation of each page's layout and functionality.
 
+## Database Design
+
+### Relationships Overview
+
+1. **User**
+   - A user has:
+     - One-to-One relationship with `Profile`.
+     - One-to-Many relationship with `Post`.
+     - One-to-Many relationship with `Comment`.
+     - Many-to-Many relationship with other users via `Follower`.
+     - Many-to-Many relationship with `Post` via `Like`.
+     - One-to-Many relationship with `Notification`.
+     - Many-to-Many relationship with other users via `Report`.
+
+2. **Profile**
+   - A profile:
+     - Belongs to one `User` (One-to-One).
+
+3. **Post**
+   - A post:
+     - Belongs to one `User` (Many-to-One).
+     - Has many `Comments` (One-to-Many).
+     - Can be liked by many users via `Like` (Many-to-Many).
+
+4. **Comment**
+   - A comment:
+     - Belongs to one `Post` (Many-to-One).
+     - Belongs to one `User` (Many-to-One).
+
+5. **Like**
+   - A like:
+     - Belongs to one `User` (Many-to-One).
+     - Belongs to one `Post` (Many-to-One).
+
+6. **Follower**
+   - A follower relationship:
+     - Links two users (Many-to-Many, self-referential).
+
+7. **Notification**
+   - A notification:
+     - Belongs to one recipient user (Many-to-One).
+     - Belongs to one actor user (Many-to-One).
+     - Can reference various types of actions or entities via `target_id` (Polymorphic).
+
+8. **Report**
+   - A report:
+     - Links two users (Many-to-Many, self-referential).
+
+---
+
+<div style="text-align: center;">
+  <img src="documentation/images_gifs/erd.png" alt="Entity-Relationship Diagram" style="max-width: 55%; height: auto;">
+</div>
+
+
+
 #### [🔙 Back to content](#content)
 
 ## Technology Stack
@@ -710,6 +766,7 @@ The wireframes have been designed for both PC and mobile screens to provide a vi
 - **[Favicon.io](https://favicon.io/favicon-converter/):** Used to generate the favicon.
 - **[Balsamiq](https://balsamiq.com/wireframes/desktop/):** Used to create wireframes (desktop version).
 - **[TinyPNG](https://tinypng.com/):** Used to compress each image for optimal load times.
+- **[Eraser.io](https://www.eraser.io/ai/erd-generator):** Used for generating the Entity-Relationship Diagram (ERD).
 
 #### [🔙 Back to content](#content)
 
