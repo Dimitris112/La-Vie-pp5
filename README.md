@@ -61,7 +61,6 @@ The platform is built with **React** for the front-end, **Django REST Framework*
 
 - [Tools used](#tools-used)
 
-
 [Issues](#issues)
 
 - [Fixed bugs](#fixed-bugs)
@@ -393,67 +392,122 @@ The wireframes have been designed for both PC and mobile screens to provide a vi
 
 <details>
   <summary>Click to view the Technology Used</summary>
-  <table>
-    <tr>
-      <td><strong>Backend</strong></td>
-      <td style="text-align:right;">Django 5.1.1 <code>Django==5.1.1</code></td>
-    </tr>
-    <tr>
-      <td><strong>API</strong></td>
-      <td style="text-align:right;">Django REST Framework <code>djangorestframework==3.15.2</code></td>
-    </tr>
-    <tr>
-      <td><strong>Database</strong></td>
-      <td style="text-align:right;">PostgreSQL <code>psycopg2==2.9.9</code></td>
-    </tr>
-    <tr>
-      <td><strong>Authentication</strong></td>
-      <td style="text-align:right;">Django Allauth <code>django-allauth==64.2.1</code></td>
-    </tr>
-    <tr>
-      <td><strong>Frontend</strong></td>
-      <td style="text-align:right;">JavaScript, JSON, HTML5, CSS3</td>
-    </tr>
-    <tr>
-      <td><strong>Styling</strong></td>
-      <td style="text-align:right;">Crispy Forms + Bootstrap 5 <code>crispy-bootstrap5==2024.2</code></td>
-    </tr>
-    <tr>
-      <td><strong>Media Storage</strong></td>
-      <td style="text-align:right;">Cloudinary <code>cloudinary==1.41.0</code></td>
-    </tr>
-    <tr>
-      <td><strong>Static Files</strong></td>
-      <td style="text-align:right;">Whitenoise <code>whitenoise==6.7.0</code></td>
-    </tr>
-    <tr>
-      <td><strong>Server</strong></td>
-      <td style="text-align:right;">Gunicorn <code>gunicorn==23.0.0</code></td>
-    </tr>
-    <tr>
-      <td><strong>Image Handling</strong></td>
-      <td style="text-align:right;">Pillow <code>pillow==10.4.0</code></td>
-    </tr>
-  </table>
-</details>
 
-### Other Dependencies
+<div style="display: flex; justify-content: space-between;">
 
-<details>
-  <summary>Click to view the Other Dependencies</summary>
-  <ul>
-    <li><code>asgiref==3.8.1</code></li>
-    <li><code>dj-database-url==2.2.0</code></li>
-    <li><code>dj3-cloudinary-storage==0.0.6</code></li>
-    <li><code>django-crispy-forms==2.3</code></li>
-    <li><code>django-summernote==0.8.20.0</code></li>
-    <li><code>oauthlib==3.2.2</code></li>
-    <li><code>PyJWT==2.9.0</code></li>
-    <li><code>python3-openid==3.2.0</code></li>
-    <li><code>requests-oauthlib==2.0.0</code></li>
-    <li><code>sqlparse==0.5.1</code></li>
-    <li><code>urllib3==1.26.20</code></li>
-  </ul>
+<!-- Backend Table -->
+
+<div style="flex: 1; margin-right: 20px;">
+      <h4><strong>Backend</strong></h4>
+      <table>
+        <tr>
+          <td><strong>Backend</strong></td>
+          <td style="text-align:right;">Django 3.2.25 <code>Django==3.2.25</code></td>
+        </tr>
+        <tr>
+          <td><strong>API</strong></td>
+          <td style="text-align:right;">Django REST Framework <code>djangorestframework==3.12.4</code></td>
+        </tr>
+        <tr>
+          <td><strong>Authentication</strong></td>
+          <td style="text-align:right;">Django Allauth <code>django-allauth==0.54.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>Database</strong></td>
+          <td style="text-align:right;">PostgreSQL <code>psycopg2==2.9.9</code></td>
+        </tr>
+        <tr>
+          <td><strong>Media Storage</strong></td>
+          <td style="text-align:right;">Cloudinary <code>cloudinary==1.36.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>Static Files</strong></td>
+          <td style="text-align:right;">Whitenoise <code>whitenoise==6.4.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>Server</strong></td>
+          <td style="text-align:right;">Gunicorn <code>gunicorn==23.0.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>Image Handling</strong></td>
+          <td style="text-align:right;">Pillow <code>pillow==10.4.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>JWT Authentication</strong></td>
+          <td style="text-align:right;">SimpleJWT <code>djangorestframework-simplejwt==5.3.1</code></td>
+        </tr>
+        <tr>
+          <td><strong>OAuth</strong></td>
+          <td style="text-align:right;">OAuthlib <code>oauthlib==3.2.2</code></td>
+        </tr>
+        <tr>
+          <td><strong>Timezone Support</strong></td>
+          <td style="text-align:right;">Pytz <code>pytz==2024.2</code></td>
+        </tr>
+        <tr>
+          <td><strong>Data Filtering</strong></td>
+          <td style="text-align:right;">Django Filter <code>django-filter==2.4.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>CORS Support</strong></td>
+          <td style="text-align:right;">Django CORS Headers <code>django-cors-headers==4.5.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>URL Parsing</strong></td>
+          <td style="text-align:right;">DJ Database URL <code>dj-database-url==0.5.0</code></td>
+        </tr>
+      </table>
+    </div>
+
+<!-- Frontend Table -->
+
+  <div style="flex: 1; margin-left: 20px;">
+      <h4><strong>Frontend</strong></h4>
+      <table>
+        <tr>
+          <td><strong>Frontend</strong></td>
+          <td style="text-align:right;">React 17.0.2 <code>react==17.0.2</code></td>
+        </tr>
+        <tr>
+          <td><strong>Styling</strong></td>
+          <td style="text-align:right;">Bootstrap 4.6.2, React Bootstrap <code>react-bootstrap==1.6.3</code></td>
+        </tr>
+        <tr>
+          <td><strong>Material UI</strong></td>
+          <td style="text-align:right;">MUI Icons & Material <code>@mui/icons-material==6.3.1, @mui/material==6.3.1</code></td>
+        </tr>
+        <tr>
+          <td><strong>Routing</strong></td>
+          <td style="text-align:right;">React Router <code>react-router-dom==5.3.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>HTTP Requests</strong></td>
+          <td style="text-align:right;">Axios <code>axios==0.21.4</code></td>
+        </tr>
+        <tr>
+          <td><strong>JWT</strong></td>
+          <td style="text-align:right;">JWT Decode <code>jwt-decode==3.1.2</code></td>
+        </tr>
+        <tr>
+          <td><strong>Animations</strong></td>
+          <td style="text-align:right;">Framer Motion <code>framer-motion==5.6.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>Testing Libraries</strong></td>
+          <td style="text-align:right;">React Testing Library <code>@testing-library/react==11.2.7</code></td>
+        </tr>
+        <tr>
+          <td><strong>Infinite Scroll</strong></td>
+          <td style="text-align:right;">React Infinite Scroll Component <code>react-infinite-scroll-component==6.1.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>Bootstrap Integration</strong></td>
+          <td style="text-align:right;">React Bootstrap <code>react-bootstrap==1.6.3</code></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
 </details>
 
 ---
