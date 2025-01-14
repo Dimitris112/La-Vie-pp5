@@ -1,9 +1,8 @@
 <h1 align="center">📱✨ <a href="https://la-vie-pp5-c334770967ef.herokuapp.com/">La Vie | Own IT</a> ✨📱</h1>
 
-<div style="text-align: center;">
-  <img src="documentation/images_gifs/responsive_light.png" alt="Responsiveness Light" width="600" height="auto" />
-  <img src="documentation/images_gifs/responsive_dark.png" alt="Responsiveness Dark" width="600" height="auto" />
-</div>
+![Responsiveness Light](documentation/images_gifs/responsive_light.png)
+
+![Responsiveness Dark](documentation/images_gifs/responsive_dark.png)
 
 ## The purpose of this project is a web-based social media platform called **La Vie**, designed to provide users with a safe and engaging space to share content, interact with others, and customize their experience. Built using **React** and **Django REST Framework**, the platform uses a modern and dynamic interface alongside a robust backend system.
 
