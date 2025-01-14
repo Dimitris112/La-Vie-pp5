@@ -1121,7 +1121,7 @@ The application includes several measures to ensure data security and protect us
 
 ## Testing
 
-For a detailed overview of both manual and automated testing processes, please refer to [TESTING.md](https://github.com/Dimitris112/La-Vie-pp5/blob/main/TESTING.md).
+For an overview of both manual and automated testing processes, please refer to [TESTING.md](https://github.com/Dimitris112/La-Vie-pp5/blob/main/TESTING.md).
 
 #### [🔙 Back to content](#content)
 
